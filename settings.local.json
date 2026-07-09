@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($py = \\(Get-Command python -ErrorAction SilentlyContinue\\).Source; if \\($py\\) { \"python: $py\"; python --version } else { \"no-python\" })",
+      "PowerShell(python -m http.server 8000)",
+      "PowerShell(winget install *)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); $cf = \\(Get-Command cloudflared -ErrorAction SilentlyContinue\\).Source; if\\($cf\\){ \"found: $cf\"; & cloudflared --version } else { \"not on PATH, searching...\"; Get-ChildItem \"C:\\\\Program Files\\\\cloudflared\\\\\",\"$env:LOCALAPPDATA\\\\Microsoft\\\\WinGet\\\\\" -Recurse -Filter cloudflared.exe -ErrorAction SilentlyContinue | Select-Object -First 3 -ExpandProperty FullName })",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\cloudflared\\\\cloudflared.exe\" tunnel --url http://localhost:8000)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"https://intention-invitation-zum-fold.trycloudflare.com/index.html\" -UseBasicParsing -TimeoutSec 15; \"HTTPS $\\($r.StatusCode\\) OK · $\\([math]::Round\\($r.RawContentLength/1KB,1\\)\\) KB\" } catch { \"실패: $\\($_.Exception.Message\\)\" })",
+      "PowerShell($git=\\(Get-Command git -ErrorAction SilentlyContinue\\).Source; $gh=\\(Get-Command gh -ErrorAction SilentlyContinue\\).Source; $node=\\(Get-Command node -ErrorAction SilentlyContinue\\).Source; $npm=\\(Get-Command npm -ErrorAction SilentlyContinue\\).Source; \"git: $git\"; \"gh\\(GitHub CLI\\): $gh\"; \"node: $node\"; \"npm: $npm\"; if\\($node\\){ node --version })",
+      "PowerShell(npm install *)",
+      "PowerShell($u=\"https://img.magnific.com/free-vector/colored-landing-page-website-design-template-set-with-flat-elements-links-minimalist-style-vector-illustration_1284-73446.jpg?semt=ais_hybrid&w=740&q=80\"; $out=\"$env:TEMP\\\\ref_ui.jpg\"; try{ Invoke-WebRequest -Uri $u -OutFile $out -UseBasicParsing -TimeoutSec 20; \"saved: $out \\($\\([math]::Round\\(\\(Get-Item $out\\).Length/1KB,1\\)\\) KB\\)\" }catch{ \"실패: $\\($_.Exception.Message\\)\" })"
+    ]
+  }
+}
